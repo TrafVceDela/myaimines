@@ -5,12 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>AI Mines Predictor</title>
     <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;600&display=swap"
       rel="stylesheet"
     />
     <style>
       body {
-        font-family: "Montserrat", sans-serif;
+        font-family: "Tajawal", sans-serif;
         background-color: #121212;
         color: white;
         text-align: center;
@@ -434,35 +434,35 @@
     <!-- Loading Overlay -->
     <div class="loading-overlay" id="loading-overlay">
       <div class="loading-spinner"></div>
-      <div class="loading-text">Verifying your ID...</div>
+      <div class="loading-text">Verifying ID...</div>
     </div>
 
     <!-- Modal Overlay -->
     <div class="modal-overlay" id="modal-overlay">
       <div class="modal-content">
         <span class="close-modal" id="close-modal">&times;</span>
-        <h3 class="modal-title">HOW TO USE THE BOT</h3>
+        <h3 class="modal-title">How to Use the Bot</h3>
         <div class="modal-text">
           <ol>
             <li>
-              <strong>First</strong> you have to find out how much you need to
-              bet by clicking on the button - "Get bet amount"
+              <strong>First</strong> you need to know the amount you need to bet
+              by clicking the button - "Get Bet Amount"
             </li>
             <li>
-              You <strong>MUST</strong> first make a bet for the amount shown
-              and only then click on the "Get Signal" button
+              <strong>You must</strong> first place a bet with the displayed
+              amount and only then click the "Get Signal" button
             </li>
           </ol>
-          <p>This is the only way you will win!</p>
+          <p>This is the only way to win!</p>
           <p>
-            If you take a signal and do not place a bet to check the bot, you
-            will get an incorrect signal because the bot does not see your bet
-            on the site 1xBet and can not analyze the winning signal.
+            If you take a signal without placing a bet to verify the bot, you
+            will get an incorrect signal because the bot cannot see your bet on
+            the 1xBet site and cannot analyze the winning signal.
           </p>
           <p>
-            If you lose, it means you are doing something wrong. Or if you are
-            sure that you are doing everything right, change your browser or
-            play with VPN.
+            If you lose, it means you're doing something wrong. Or if you're
+            sure you're doing everything correctly, try changing your browser or
+            play with a VPN.
           </p>
         </div>
       </div>
@@ -470,11 +470,13 @@
 
     <div class="game-container">
       <h1>AI Mines Predictor</h1>
-      <button class="how-to-use-btn" id="how-to-use-btn">HOW TO USE BOT</button>
+      <button class="how-to-use-btn" id="how-to-use-btn">
+        How to Use the Bot
+      </button>
 
       <div class="id-form" id="id-form">
         <div class="setting-group">
-          <label for="user-id">Enter YOUR 1XBET account ID</label>
+          <label for="user-id">Enter your 1XBET account ID</label>
           <input
             type="text"
             id="user-id"
@@ -526,7 +528,7 @@
           </div>
           <div class="buttons">
             <button id="get-bet-btn" onclick="getBetAmount()">
-              Get bet amount
+              Get Bet Amount
             </button>
             <button id="signal-btn" onclick="getSignal()" disabled>
               Get Signal
@@ -635,12 +637,11 @@
 
         // Show loading state for 3 seconds
         setTimeout(() => {
-          // Generate random bet amount between 8 and 16
           const min = 8;
           const max = 16;
+
           const randomAmount =
             Math.floor(Math.random() * (max - min + 1)) + min;
-
           gameState.betAmount = randomAmount;
 
           // Display the bet amount
@@ -648,8 +649,8 @@
           betAmountContainer.classList.remove("hidden");
 
           // Enable signal button and reset bet button
-          predictButton.disabled = false;
-          getBetButton.textContent = "Get bet amount";
+          signalButton.disabled = false;
+          getBetButton.textContent = "Get Bet Amount";
           getBetButton.disabled = false;
 
           gameState.betGenerated = true;
@@ -663,7 +664,7 @@
         // Disable buttons during animation
         signalButton.disabled = true;
         getBetButton.disabled = true;
-        signalButton.textContent = "Generating...";
+        signalButton.textContent = "AI Analyzing...";
 
         // Get selected settings
         gameState.gridSize = parseInt(gridSizeSelect.value);
@@ -738,44 +739,44 @@
         }, 1000);
       }
 
-      // Функция для установки фиксированных мин (доступна в консоли)
+      // Function to set fixed mines (available in console)
       window.setFixedMines = function (...positions) {
-        // Проверка введенных данных
+        // Data validation
         if (positions.length === 0) {
           console.error("Please provide at least one mine position");
           return;
         }
 
-        // Проверка что все позиции - числа
+        // Check all positions are numbers
         if (!positions.every((pos) => Number.isInteger(pos) && pos >= 0)) {
           console.error("All positions must be positive integers");
           return;
         }
 
-        // Сохраняем фиксированные позиции мин
+        // Save fixed mine positions
         gameState.fixedMines = positions;
 
         console.log(`Fixed mines set at positions: ${positions.join(", ")}`);
         console.log('Next "Get Signal" will use these positions');
       };
 
-      // Функция для сброса фиксированных мин (доступна в консоли)
+      // Function to reset fixed mines (available in console)
       window.resetMines = function () {
         gameState.fixedMines = null;
-        console.log("Fixed mines reset - back to random behavior");
+        console.log("Fixed mines reset - returning to random behavior");
       };
 
-      // Функция для отображения текущих настроек (доступна в консоли)
+      // Function to show current settings (available in console)
       window.showSettings = function () {
-        console.log("Current settings:");
+        console.log("Current Settings:");
         console.log(`Grid size: ${gameState.gridSize}x${gameState.gridSize}`);
-        console.log(`Mine count: ${gameState.mineCount}`);
+        console.log(`Number of mines: ${gameState.mineCount}`);
         if (gameState.fixedMines) {
           console.log(
-            `Fixed mines positions: ${gameState.fixedMines.join(", ")}`
+            `Fixed mine positions: ${gameState.fixedMines.join(", ")}`
           );
         } else {
-          console.log("Mines: random");
+          console.log("Mines: Random");
         }
       };
     </script>
